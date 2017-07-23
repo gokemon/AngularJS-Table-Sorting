@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Winning Sumo Techniques</title>
+    <meta name="description" content="AngularJS Table Sorting Page">
+    <meta name="author" content="Michael Gokey">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script src="https://use.fontawesome.com/46a08157a2.js"></script>
+    <script src="js/scripts.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css">
+
+    <!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head>
+
+<body>
+    <div class="container" ng-app="sortApp" ng-controller="mainController">
+
+        <table class="table table-bordered table-striped table-hover">
+            <thead>
+                <!-- Use bootstrap table classes to make it look a little better -->
+                <tr>
+                    <td>
+                        <a href="#" ng-click="sortType = 'name'; sortReverse = !sortReverse">Name
+            <span ng-show="sortType == 'name' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'name' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+                    </td>
+                    <td>
+                        <a href="#" ng-click="sortType = 'technique'; sortReverse = !sortReverse">Winning Technique 
+            <span ng-show="sortType == 'technique' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'technique' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+                    </td>
+                    <td>
+                        <a href="#" ng-click="sortType = 'usefullness'; sortReverse = !sortReverse">Usefullness 
+            <span ng-show="sortType == 'usefullness' && !sortReverse" class="fa fa-caret-down"></span>
+            <span ng-show="sortType == 'usefullness' && sortReverse" class="fa fa-caret-up"></span>
+          </a>
+                    </td>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="move in sumo | orderBy:sortType:sortReverse | filter:searchTechnique">
+                    <td>{{ move.name }}</td>
+                    <td>{{ move.technique }}</td>
+                    <td>{{ move.usefullness }}</td>
+                </tr>
+            </tbody>
+            <caption>Winning Sumo Techniques</caption>
+        </table>
+        <!--  https://www.amazon.com/Sumo-Skills-Instructional-Guide-Competitive/dp/0991408608 -->
+        <p><a href="https://www.amazon.com/Sumo-Skills-Instructional-Guide-Competitive/dp/0991408608" title="Sumo Skills book by Thomas Zabel" target="_blank">
+    SUMO SKILLS, by Thomas Zabel, pg 61
+    <i class="fa fa-share" aria-hidden="true"></i>
+    </a></p>
+    </div </body>
+
+</html>
